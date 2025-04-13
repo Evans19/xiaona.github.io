@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日历卡片生成工具</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- html2canvas for downloading -->
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <!-- Fetch polyfill for older browsers -->
+    <script src="https://cdn.jsdelivr.net/npm/whatwg-fetch@3.6.2/dist/fetch.umd.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #f5f5f5;
+        }
+        .calendar-card {
+            width: 350px;
+            height: 500px;
+            background-color: white;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .calendar-header {
+            background-color: #3b82f6;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        .calendar-date {
+            font-size: 72px;
+            font-weight: 700;
+            line-height: 1;
+        }
+        .calendar-month-year {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        .calendar-day {
+            font-size: 16px;
+        }
+        .calendar-content {
+            padding: 20px;
+            height: calc(100% - 150px);
+            display: flex;
+            flex-direction: column;
+        }
+        .calendar-quote {
+            flex-grow: 1;
+            font-size: 18px;
+            line-height: 1.6;
+            overflow-wrap: break-word;
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
+        .calendar-source {
+            font-size: 14px;
+            color: #6b7280;
+            text-align: right;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <header class="bg-blue-600 text-white py-6">
+        <div class="container mx-auto px-4">
+            <h1 class="text-3xl font-bold text-center">日历卡片生成工具</h1>
+        </div>
+    </header>
+
+    <main class="flex-grow container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Input Form -->
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-xl font-semibold mb-4">输入信息</h2>
+                <form id="calendar-form" class="space-y-4">
+                    <div>
+                        <label for="quote" class="block text-gray-700 mb-2">文案内容</label>
+                        <textarea id="quote" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" rows="5" placeholder="输入想要展示的文案内容..."></textarea>
+                    </div>
+                    <div>
+                        <label for="source" class="block text-gray-700 mb-2">来源</label>
+                        <input type="text" id="source" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="输入文案来源...">
+                    </div>
+                    <div class="flex space-x-2">
+                        <button type="submit" class="flex-1 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition duration-300">生成卡片</button>
+                        <button type="button" id="random-btn" class="bg-purple-600 text-white py-2 px-4 rounded-md hover:bg-purple-700 transition duration-300 flex items-center justify-center">
+                            <i class="fas fa-random mr-2"></i> 随机
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Calendar Card Preview -->
+            <div class="flex flex-col items-center">
+                <h2 class="text-xl font-semibold mb-4">卡片预览</h2>
+                <div id="calendar-card" class="calendar-card rounded-lg mb-4">
+                    <div class="calendar-header">
+                        <div class="calendar-month-year" id="month-year"></div>
+                        <div class="calendar-date" id="date"></div>
+                        <div class="calendar-day" id="day"></div>
+                    </div>
+                    <div class="calendar-content">
+                        <div class="calendar-quote" id="card-quote">在这里输入您想要展示的文案内容...</div>
+                        <div class="calendar-source" id="card-source">——来源</div>
+                    </div>
+                </div>
+                <button id="download-btn" class="bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 transition duration-300 flex items-center">
+                    <i class="fas fa-download mr-2"></i> 下载卡片
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-4">
+        <div class="container mx-auto px-4 text-center">
+            <p>© 2023 日历卡片生成工具 | 使用 HTML, CSS 和 JavaScript 制作</p>
+        </div>
+    </footer>
+
+    <script>
+        // 更新日历卡片上的日期
+        function updateDate() {
+            const now = new Date();
+            const date = now.getDate();
+            const monthNames = ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'];
+            const dayNames = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+            
+            document.getElementById('date').textContent = date;
+            document.getElementById('month-year').textContent = `${monthNames[now.getMonth()]} ${now.getFullYear()}`;
+            document.getElementById('day').textContent = dayNames[now.getDay()];
+        }
+
+        // 初始化日期
+        updateDate();
+
+        // 随机获取金句功能
+        document.getElementById('random-btn').addEventListener('click', function() {
+            // 显示加载状态
+            const randomBtn = this;
+            randomBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> 加载中...';
+            
+            // 调用API获取随机金句
+            fetch('https://api.siliconflow.cn/v1/chat/completions', {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer sk-taanafufagrbfxcyxbwxgqhyisezdnlfvaffpmbhkwkgdrcz',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "model": "Qwen/Qwen2.5-14B-Instruct",
+                    "stream": false,
+                    "max_tokens": 512,
+                    "temperature": 0.7,
+                    "top_p": 0.7,
+                    "top_k": 50,
+                    "frequency_penalty": 0.5,
+                    "n": 1,
+                    "stop": [],
+                    "messages": [
+                        {
+                            "role": "user",
+                            "content": "随机回复我一句金句及出处，包括不限于影视剧、名人名言、名著、歌词等。输出为json形式，内容为text，出处为author"
+                        }
+                    ]
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // 解析返回的JSON数据
+                try {
+                    const content = data.choices[0].message.content;
+                    // 提取JSON部分
+                    const jsonMatch = content.match(/```json\n([\s\S]*?)\n```/) || content.match(/{[\s\S]*?}/); 
+                    let jsonData;
+                    
+                    if (jsonMatch) {
+                        jsonData = JSON.parse(jsonMatch[1] || jsonMatch[0]);
+                    } else {
+                        throw new Error('无法解析返回的JSON数据');
+                    }
+                    
+                    // 填充到输入框
+                    document.getElementById('quote').value = jsonData.text || '';
+                    document.getElementById('source').value = jsonData.author || '';
+                    
+                    // 同时更新卡片预览
+                    document.getElementById('card-quote').textContent = jsonData.text || '在这里输入您想要展示的文案内容...';
+                    document.getElementById('card-source').textContent = `——${jsonData.author || '来源'}`;
+                } catch (error) {
+                    console.error('解析数据失败:', error);
+                    alert('获取随机金句失败，请重试');
+                }
+                
+                // 恢复按钮状态
+                randomBtn.innerHTML = '<i class="fas fa-random mr-2"></i> 随机';
+            })
+            .catch(error => {
+                console.error('API调用失败:', error);
+                alert('获取随机金句失败，请重试');
+                // 恢复按钮状态
+                randomBtn.innerHTML = '<i class="fas fa-random mr-2"></i> 随机';
+            });
+        });
+
+        // 表单提交处理
+        document.getElementById('calendar-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const quote = document.getElementById('quote').value || '在这里输入您想要展示的文案内容...';
+            const source = document.getElementById('source').value || '来源';
+            
+            document.getElementById('card-quote').textContent = quote;
+            document.getElementById('card-source').textContent = `——${source}`;
+        });
+
+        // 下载卡片功能
+        document.getElementById('download-btn').addEventListener('click', function() {
+            const card = document.getElementById('calendar-card');
+            
+            // 显示加载状态
+            this.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> 正在生成...';
+            const downloadBtn = this;
+            
+            html2canvas(card, {
+                scale: 2, // 提高分辨率
+                backgroundColor: null
+            }).then(function(canvas) {
+                // 创建下载链接
+                const link = document.createElement('a');
+                link.download = `calendar-card-${new Date().toISOString().split('T')[0]}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+                
+                // 恢复按钮状态
+                downloadBtn.innerHTML = '<i class="fas fa-download mr-2"></i> 下载卡片';
+            });
+        });
+    </script>
+</body>
+</html>
