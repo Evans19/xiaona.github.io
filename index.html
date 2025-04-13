@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XN | 产品经理 - 个人主页</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .hero-section {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://picsum.photos/1920/1080?random=1');
+            background-size: cover;
+            background-position: center;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .social-icon:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md fixed w-full z-10">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-gray-800">XN <span class="text-blue-600">Portfolio</span></a>
+            <div class="hidden md:flex space-x-6">
+                <a href="#about" class="hover:text-blue-600 transition-colors">关于我</a>
+                <a href="#projects" class="hover:text-blue-600 transition-colors">作品</a>
+                <a href="#my-life" class="hover:text-blue-600 transition-colors">我的生活</a>
+                <a href="#contact" class="hover:text-blue-600 transition-colors">联系方式</a>
+            </div>
+            <button class="md:hidden focus:outline-none" id="menu-toggle">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-white w-full" id="mobile-menu">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+                <a href="#about" class="hover:text-blue-600 transition-colors">关于我</a>
+                <a href="#projects" class="hover:text-blue-600 transition-colors">作品</a>
+                <a href="#my-life" class="hover:text-blue-600 transition-colors">我的生活</a>
+                <a href="#contact" class="hover:text-blue-600 transition-colors">联系方式</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section min-h-screen flex items-center justify-center text-white pt-16">
+        <div class="container mx-auto px-4 py-16 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">XN | 产品经理</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">服装新零售 · CRM · ERP · 业财一体化 · 项目管理</p>
+            <div class="flex justify-center space-x-4">
+                <a href="#projects" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full transition-colors font-medium">查看作品</a>
+                <a href="#contact" class="bg-transparent border-2 border-white hover:bg-white hover:text-gray-900 text-white px-6 py-3 rounded-full transition-colors font-medium">联系我</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <img src="https://picsum.photos/600/600?random=2" alt="XN Profile" class="rounded-lg shadow-xl max-w-full h-auto">
+                </div>
+                <div class="md:w-1/2 md:pl-12">
+                    <h2 class="text-3xl font-bold mb-6">关于我</h2>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        我是XN，一名专注于产品管理和AI应用的产品经理。我在服装新零售、CRM、ERP、业财一体化和项目管理领域拥有丰富的经验。
+                    </p>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        我热衷于探索AI技术在产品中的应用，并致力于将复杂的技术转化为易用的产品。目前，我正在撰写《AI应用从小白到专家》一书，希望能帮助更多人了解和应用AI技术。
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm">产品管理</span>
+                        <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm">AI应用</span>
+                        <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm">新零售</span>
+                        <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm">CRM</span>
+                        <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm">ERP</span>
+                        <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm">业财一体化</span>
+                        <span class="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm">项目管理</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-2 text-center">我的作品</h2>
+            <p class="text-gray-600 mb-12 text-center max-w-2xl mx-auto">以下是我参与开发的一些项目和作品</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 project-card">
+                    <img src="https://picsum.photos/600/400?random=3" alt="春节红包封面生成工具" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">春节红包封面生成工具</h3>
+                        <p class="text-gray-600 mb-4">一个帮助用户快速生成个性化春节红包封面的在线工具。</p>
+                        <a href="https://hongbao.agent101.cn/" target="_blank" class="text-blue-600 hover:text-blue-800 inline-flex items-center">
+                            查看项目 <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 project-card">
+                    <img src="https://picsum.photos/600/400?random=4" alt="决明子-AI辅助决策工具" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">决明子-AI辅助决策工具</h3>
+                        <p class="text-gray-600 mb-4">一款利用AI技术帮助用户做出更明智决策的工具。</p>
+                        <a href="https://jueming.agent101.cn/" target="_blank" class="text-blue-600 hover:text-blue-800 inline-flex items-center">
+                            查看项目 <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 project-card">
+                    <img src="https://picsum.photos/600/400?random=5" alt="Agent 101 智能体指北" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Agent 101 智能体指北</h3>
+                        <p class="text-gray-600 mb-4">一个关于AI智能体的知识库和指南，帮助用户了解和使用AI智能体。</p>
+                        <a href="https://agent101.feishu.cn/wiki/KLarwIA1piLrBYk7bf2cBf3HnNe" target="_blank" class="text-blue-600 hover:text-blue-800 inline-flex items-center">
+                            查看项目 <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 4 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 project-card">
+                    <img src="https://picsum.photos/600/400?random=6" alt="产品公开课" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">产品公开课</h3>
+                        <p class="text-gray-600 mb-4">一系列关于产品管理和设计的公开课程，分享产品经理的经验和知识。</p>
+                        <a href="https://agent101.cn/" target="_blank" class="text-blue-600 hover:text-blue-800 inline-flex items-center">
+                            查看项目 <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 5 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 project-card">
+                    <img src="https://picsum.photos/600/400?random=7" alt="AI应用从小白到专家" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">《AI应用从小白到专家》</h3>
+                        <p class="text-gray-600 mb-4">一本关于AI应用的书籍，从基础知识到高级应用，帮助读者全面了解AI技术。</p>
+                        <span class="text-orange-600 inline-flex items-center">
+                            出版中 <i class="fas fa-hourglass-half ml-2"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- My Life Section -->
+    <section id="my-life" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-2 text-center">我的生活</h2>
+            <p class="text-gray-600 mb-12 text-center max-w-2xl mx-auto">我去过的中国城市及其地标建筑</p>
+            
+            <div class="max-w-6xl mx-auto">
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    <!-- 北京 -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-xl">
+                        <img src="https://images.unsplash.com/photo-1508804185872-d7badad00f7d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="北京故宫" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-lg font-bold mb-1">北京</h3>
+                            <p class="text-gray-600 text-sm">故宫 - 中国明清两代的皇家宫殿</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 上海 -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-xl">
+                        <img src="https://images.unsplash.com/photo-1474181487882-5abf3f0ba6c2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="上海外滩" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-lg font-bold mb-1">上海</h3>
+                            <p class="text-gray-600 text-sm">外滩 - 上海的标志性建筑群</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 成都 -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-xl">
+                        <img src="https://images.unsplash.com/photo-1545293527-e26058c5b48b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="成都宽窄巷子" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-lg font-bold mb-1">成都</h3>
+                            <p class="text-gray-600 text-sm">宽窄巷子 - 成都历史文化名街</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 杭州 -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-xl">
+                        <img src="https://images.unsplash.com/photo-1598887142487-2e7829cda8c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="杭州西湖" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-lg font-bold mb-1">杭州</h3>
+                            <p class="text-gray-600 text-sm">西湖 - 中国著名的风景名胜</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 厦门 -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-xl">
+                        <img src="https://images.unsplash.com/photo-1611288875785-9ef0f78d0a48?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="厦门鼓浪屿" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-lg font-bold mb-1">厦门</h3>
+                            <p class="text-gray-600 text-sm">鼓浪屿 - 历史文化名岛</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 丽江 -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-xl">
+                        <img src="https://images.unsplash.com/photo-1527668752968-14dc70a27c95?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="丽江古城" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-lg font-bold mb-1">丽江</h3>
+                            <p class="text-gray-600 text-sm">丽江古城 - 世界文化遗产</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 长沙 -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-xl">
+                        <img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="长沙橘子洲" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-lg font-bold mb-1">长沙</h3>
+                            <p class="text-gray-600 text-sm">橘子洲 - 湘江中的名洲</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 大理 -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-xl">
+                        <img src="https://images.unsplash.com/photo-1602941525421-8f8b81d3edbb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="大理古城" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-lg font-bold mb-1">大理</h3>
+                            <p class="text-gray-600 text-sm">大理古城 - 白族文化的瑰宝</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-2 text-center">联系方式</h2>
+            <p class="text-gray-600 mb-12 text-center max-w-2xl mx-auto">通过以下方式关注我或与我联系</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-4xl mx-auto">
+                <!-- Social 1 -->
+                <div class="bg-gray-50 rounded-lg p-6 text-center transition-all duration-300 hover:shadow-lg">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-comment-dots text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">公众号/视频号</h3>
+                    <p class="text-gray-600">XN产品进化论</p>
+                </div>
+                
+                <!-- Social 2 -->
+                <div class="bg-gray-50 rounded-lg p-6 text-center transition-all duration-300 hover:shadow-lg">
+                    <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-bolt text-yellow-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">即刻</h3>
+                    <a href="https://baiducom/" target="_blank" class="text-blue-600 hover:text-blue-800">查看主页</a>
+                </div>
+                
+                <!-- Social 3 -->
+                <div class="bg-gray-50 rounded-lg p-6 text-center transition-all duration-300 hover:shadow-lg">
+                    <div class="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fab fa-bilibili text-pink-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">bilibili</h3>
+                    <a href="https://baiducom/" target="_blank" class="text-blue-600 hover:text-blue-800">查看主页</a>
+                </div>
+                
+                <!-- Social 4 -->
+                <div class="bg-gray-50 rounded-lg p-6 text-center transition-all duration-300 hover:shadow-lg">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fab fa-weixin text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">微信</h3>
+                    <p class="text-gray-600">Evans496</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h2 class="text-2xl font-bold">XN <span class="text-blue-400">Portfolio</span></h2>
+                    <p class="text-gray-400 mt-2">产品经理 · AI应用专家</p>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center transition-all duration-300 social-icon">
+                        <i class="fab fa-weixin text-white"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center transition-all duration-300 social-icon">
+                        <i class="fab fa-bilibili text-white"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center transition-all duration-300 social-icon">
+                        <i class="fas fa-bolt text-white"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 XN Portfolio. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                // Close mobile menu if open
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
